@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oracle Redesign</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #010214;
+      --oracle-red: #DB3720;
+      --white: #ffffff;
+      --black: #000000;
+      --text-dark: #161513;
+      --card-radius: 20px;
+      --pill-radius: 999px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--white);
+      border-radius: var(--pill-radius);
+      padding: 12px 20px;
+      height: 60px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--oracle-red);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-right: 10px;
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--black);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { opacity: 0.7; }
+
+    .search-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .search-btn svg { stroke: var(--black); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--oracle-red);
+      border-radius: var(--pill-radius);
+      padding: 10px;
+      height: 60px;
+    }
+
+    .nav-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .contact-sales-btn {
+      background: var(--white);
+      border: none;
+      border-radius: var(--pill-radius);
+      padding: 10px 15px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--oracle-red);
+      cursor: pointer;
+      white-space: nowrap;
+      height: 40px;
+    }
+
+    .contact-sales-btn:hover { opacity: 0.9; }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      display: flex;
+      overflow: hidden;
+      min-height: 500px;
+      position: relative;
+    }
+
+    .hero-content {
+      flex: 1;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+      max-width: 550px;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--black);
+    }
+
+    .hero-description {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .progress-bar {
+      display: flex;
+      gap: 10px;
+    }
+
+    .progress-dot {
+      width: 20px;
+      height: 4px;
+      border-radius: 99px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-dot.active {
+      background: var(--black);
+    }
+
+    .hero-image {
+      flex: 0 0 48%;
+      position: relative;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 var(--card-radius) var(--card-radius) 0;
+      overflow: hidden;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(to left, transparent, var(--white));
+      z-index: 1;
+    }
+
+    .hero-oracle-icon {
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-oracle-icon svg {
+      width: 60px;
+      height: 58px;
+    }
+
+    /* ===== SECTION 2 - ORACLE CLOUD ===== */
+    .cloud-section {
+      background: var(--oracle-red);
+      border-radius: var(--card-radius);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .cloud-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cloud-label {
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .cloud-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .cloud-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--white);
+    }
+
+    .cloud-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      color: var(--black);
+      border: none;
+      border-radius: var(--pill-radius);
+      padding: 10px 15px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      width: fit-content;
+      height: 40px;
+      margin-top: 8px;
+    }
+
+    .cloud-btn:hover { opacity: 0.9; }
+
+    /* ===== SECTION 3 - CUSTOMER STORIES ===== */
+    .stories-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+      position: relative;
+      min-height: 300px;
+    }
+
+    .story-logo {
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    .story-logo-text {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .story-logo-twitch { color: #6441A5; }
+    .story-logo-loom { color: #625DF5; }
+    .story-logo-coinbase { color: #0052FF; }
+
+    .story-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-dark);
+    }
+
+    .story-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .story-arrow {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 46px;
+      height: 46px;
+      opacity: 0.1;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .story-arrow:hover { opacity: 0.3; }
+
+    .story-arrow svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--black);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .header { flex-direction: column; align-items: stretch; }
+      .nav-left { overflow-x: auto; }
+      .hero { flex-direction: column; }
+      .hero-content { max-width: 100%; }
+      .hero-image { min-height: 300px; flex: 0 0 300px; border-radius: 0 0 var(--card-radius) var(--card-radius); }
+      .hero-image::before { background: linear-gradient(to top, transparent, var(--white)); width: 100%; height: 60%; }
+      .cloud-section { grid-template-columns: 1fr; }
+      .stories-section { grid-template-columns: 1fr; gap: 24px; }
+      .hero-title { font-size: 32px; }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 20px 12px; }
+      .page { gap: 24px; }
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 12px; }
+      .hero-content { padding: 32px; }
+      .hero-title { font-size: 26px; }
+      .hero-description { font-size: 15px; }
+      .cloud-section { padding: 32px; }
+      .cloud-title { font-size: 26px; }
+      .story-card { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <nav class="nav-left">
+        <div class="logo">ORACLE</div>
+        <ul class="nav-links">
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Customers</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Developers</a></li>
+          <li><a href="#">Company</a></li>
+        </ul>
+        <button class="search-btn" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </nav>
+      <nav class="nav-right">
+        <button class="nav-icon-btn" aria-label="Country">
+          <svg width="24" height="18" viewBox="0 0 24 18"><rect width="24" height="18" rx="2" fill="#B22234"/><rect y="1.38" width="24" height="1.38" fill="white"/><rect y="4.15" width="24" height="1.38" fill="white"/><rect y="6.92" width="24" height="1.38" fill="white"/><rect y="9.69" width="24" height="1.38" fill="white"/><rect y="12.46" width="24" height="1.38" fill="white"/><rect y="15.23" width="24" height="1.38" fill="white"/><rect width="9.6" height="9.69" fill="#3C3B6E"/></svg>
+        </button>
+        <button class="nav-icon-btn" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="#DB3720" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="7" r="4" stroke="#DB3720" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="contact-sales-btn">Contact Sales</button>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Oracle, Cleveland Clinic, and G42 launch AI-based healthcare initiative</h1>
+        <p class="hero-description">Partnership to create secure, scalable, and accessible platform to improve patient care and public health management</p>
+        <div class="progress-bar">
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-oracle-icon">
+          <svg viewBox="0 0 60 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="29" rx="28" ry="27" stroke="white" stroke-width="3" fill="none"/>
+            <path d="M20 29 L28 37 L40 22" stroke="#DB3720" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORACLE CLOUD SECTION -->
+    <section class="cloud-section">
+      <div class="cloud-card">
+        <span class="cloud-label">Oracle Cloud</span>
+        <h2 class="cloud-title">Applications</h2>
+        <p class="cloud-desc">A complete suite of cloud applications delivering consistent processes and data across your business</p>
+        <button class="cloud-btn">Explore Cloud Apps</button>
+      </div>
+      <div class="cloud-card">
+        <span class="cloud-label">Oracle Cloud</span>
+        <h2 class="cloud-title">Infrastructure</h2>
+        <p class="cloud-desc">Build, deploy, and manage all workloads and applications across multiple cloud environments</p>
+        <button class="cloud-btn">Explore OCI</button>
+      </div>
+    </section>
+
+    <!-- CUSTOMER STORIES -->
+    <section class="stories-section">
+      <div class="story-card">
+        <div class="story-logo">
+          <span class="story-logo-text story-logo-twitch">Twitch</span>
+        </div>
+        <h3 class="story-title">Unilever Prestige cuts inventory waste with Oracle Fusion Cloud SCM</h3>
+        <p class="story-desc">Fast-growing luxury beauty business unit uses Oracle Cloud Supply Chain Planning.</p>
+        <div class="story-arrow">
+          <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="22" stroke="currentColor" stroke-width="1" fill="none"/><path d="M18 23h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-logo">
+          <span class="story-logo-text story-logo-loom">Loom</span>
+        </div>
+        <h3 class="story-title">Nomura Research taps Oracle Alloy expands cloud business and sovereign AI</h3>
+        <p class="story-desc">Japanese financial institution uses Oracle platform to offer its own cloud services to customers.</p>
+        <div class="story-arrow">
+          <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="22" stroke="currentColor" stroke-width="1" fill="none"/><path d="M18 23h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-logo">
+          <span class="story-logo-text story-logo-coinbase">Coinbase</span>
+        </div>
+        <h3 class="story-title">Wingstop relies on Oracle Cloud to fuel growth</h3>
+        <p class="story-desc">Restaurant chain turns to cloud platform for its loyalty program, online ordering, other features.</p>
+        <div class="story-arrow">
+          <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="22" stroke="currentColor" stroke-width="1" fill="none"/><path d="M18 23h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
