@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DollarSign, ShoppingBag, Users, TrendingUp } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
@@ -44,26 +44,28 @@ const stats = [
 ];
 
 const Dashboard = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="flex h-screen bg-[#F0F4FD] font-sans overflow-hidden">
-      <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header />
-        <main className="flex-1 overflow-y-auto p-6">
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+        <Header onMenuClick={() => setSidebarOpen(true)} />
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <div className="mb-6">
             <h1 className="text-xl font-bold text-gray-800">Dashboard Overview</h1>
             <p className="text-gray-500 text-sm mt-0.5">Welcome back, Admin! Here's what's happening today.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5 mb-6">
             {stats.map((stat) => (
               <StatsCard key={stat.title} {...stat} />
             ))}
           </div>
-          <div className="grid grid-cols-3 gap-5 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5 mb-6">
             <SalesChart />
             <TrafficChart />
           </div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
             <RecentOrders />
             <TopProducts />
           </div>
