@@ -18,7 +18,7 @@ const statusConfig = {
 
 const RecentOrders = () => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 col-span-2">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
       <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
         <div>
           <h3 className="text-gray-800 font-semibold text-base">Recent Orders</h3>
@@ -34,8 +34,8 @@ const RecentOrders = () => {
             <tr className="border-b border-gray-50">
               <th className="text-left text-xs text-gray-400 font-medium px-6 py-3">Order ID</th>
               <th className="text-left text-xs text-gray-400 font-medium px-6 py-3">Customer</th>
-              <th className="text-left text-xs text-gray-400 font-medium px-6 py-3">Product</th>
-              <th className="text-left text-xs text-gray-400 font-medium px-6 py-3">Date</th>
+              <th className="text-left text-xs text-gray-400 font-medium px-6 py-3 hidden sm:table-cell">Product</th>
+              <th className="text-left text-xs text-gray-400 font-medium px-6 py-3 hidden md:table-cell">Date</th>
               <th className="text-left text-xs text-gray-400 font-medium px-6 py-3">Amount</th>
               <th className="text-left text-xs text-gray-400 font-medium px-6 py-3">Status</th>
             </tr>
@@ -49,13 +49,13 @@ const RecentOrders = () => {
                 <td className="px-6 py-3.5">
                   <div className="flex items-center gap-2">
                     <img src={order.avatar} alt={order.customer} className="w-7 h-7 rounded-full" />
-                    <span className="text-xs font-medium text-gray-700">{order.customer}</span>
+                    <span className="text-xs font-medium text-gray-700 hidden sm:inline">{order.customer}</span>
                   </div>
                 </td>
-                <td className="px-6 py-3.5">
+                <td className="px-6 py-3.5 hidden sm:table-cell">
                   <span className="text-xs text-gray-600">{order.product}</span>
                 </td>
-                <td className="px-6 py-3.5">
+                <td className="px-6 py-3.5 hidden md:table-cell">
                   <span className="text-xs text-gray-500">{order.date}</span>
                 </td>
                 <td className="px-6 py-3.5">

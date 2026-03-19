@@ -43,7 +43,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 const SalesChart = () => {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 col-span-2">
+    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 lg:col-span-2">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-gray-800 font-semibold text-base">Revenue Overview</h3>
